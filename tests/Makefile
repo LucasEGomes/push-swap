@@ -9,7 +9,8 @@ CC := clang
 CFLAGS := -Wall -Wextra -Werror -g3 -MMD -I $(PROJECT_SOURCE_FOLDER)
 
 SOURCES := \
-	test_doubly_linked_list.c
+	doubly_linked_list/test_factories.c \
+	doubly_linked_list/test_handlers.c
 OBJECTS_FOLDER := objs
 OBJECTS := $(SOURCES:%.c=$(OBJECTS_FOLDER)/%.o)
 DEPENDS := $(OBJECTS:%.o=%.d)
@@ -21,7 +22,7 @@ all: $(NAME)
 $(NAME): $(OBJECTS) $(PROJECT_OBJECTS_LIB)
 	$(CC) $(CFLAGS) $^ -o $@ -lcriterion
 
-$(PROJECT_OBJECTS_LIB):
+$(PROJECT_OBJECTS_LIB): $(PROJECT_OBJECTS_FOLDER)
 	mkdir -p $(dir $@)
 	ar -rcs $@ $(wildcard $(PROJECT_OBJECTS_FOLDER)/**/*.o)
 

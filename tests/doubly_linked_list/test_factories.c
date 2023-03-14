@@ -1,10 +1,9 @@
 #include "doubly_linked_list/doubly_linked_list.h"
 #include <criterion/criterion.h>
 #include <criterion/theories.h>
-#include <stdio.h>
+#include <stddef.h>
 
-#define NEW_NODE_VALUE_ERROR "Node value with wrong value."\
-	" Expected %d, got %d."
+#define NEW_NODE_VALUE_ERROR "Node value with wrong value. Expected %d, got %d."
 #define NEW_NODE_NEXT_ERROR "Node next pointer must be NULL."
 #define NEW_NODE_PREV_ERROR "Node previous pointer must be NULL."
 
