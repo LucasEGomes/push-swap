@@ -17,7 +17,9 @@ DEPENDS := $(OBJECTS:%.o=%.d)
 PROJECT_OBJECTS_LIB := $(OBJECTS_FOLDER)/libpush_swap.a
 
 all: $(NAME)
-	./$<  --always-succeed --json
+	./$<  --always-succeed --verbose
+
+-include $(DEPENDS)
 
 $(NAME): $(OBJECTS) $(PROJECT_OBJECTS_LIB)
 	$(CC) $(CFLAGS) $^ -o $@ -lcriterion
