@@ -1,24 +1,36 @@
 MAKEFLAGS += --no-builtin-rules
 
-SOURCES_FOLDER := ../src
+NAME := test_push_swap.out
+PROJECT_ROOT := ..
+PROJECT_SOURCE_FOLDER := $(PROJECT_ROOT)/src
+PROJECT_OBJECTS_FOLDER := $(PROJECT_ROOT)/objs
+
 CC := clang
-CFLAGS := -Wall -Wextra -Werror -g3 -MMD -I ./$(SOURCES_FOLDER) -lcriterion
+CFLAGS := -Wall -Wextra -Werror -g3 -MMD -I $(PROJECT_SOURCE_FOLDER)
 
-SOURCE_OBJECTS := $(wildcard ../objs/**/*.o)
-TESTS := \
+SOURCES := \
 	test_doubly_linked_list.c
-TESTS_FOLDER := tests
-TESTS_PROGRAMS := $(TESTS:%.c=$(TESTS_FOLDER)/%.out)
+OBJECTS_FOLDER := objs
+OBJECTS := $(SOURCES:%.c=$(OBJECTS_FOLDER)/%.o)
+DEPENDS := $(OBJECTS:%.o=%.d)
+PROJECT_OBJECTS_LIB := $(OBJECTS_FOLDER)/libpush_swap.a
 
-all: $(TESTS_PROGRAMS)
-	$(foreach TEST_PROGRAM, $^, ./$(TEST_PROGRAM))
+all: $(NAME)
+	./$<  --always-succeed --json
 
-$(TESTS_FOLDER)/%.out: %.c Makefile
+$(NAME): $(OBJECTS) $(PROJECT_OBJECTS_LIB)
+	$(CC) $(CFLAGS) $^ -o $@ -lcriterion
+
+$(PROJECT_OBJECTS_LIB):
 	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $< $(SOURCE_OBJECTS) -o $@
+	ar -rcs $@ $(wildcard $(PROJECT_OBJECTS_FOLDER)/**/*.o)
+
+$(OBJECTS_FOLDER)/%.o: %.c Makefile $(PROJECT_OBJECTS_LIB)
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(TESTS_FOLDER)
+	rm -rf $(OBJECTS_FOLDER)
 
 fclean: clean
 	rm -f $(NAME)
