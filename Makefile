@@ -15,7 +15,7 @@ SOURCES := \
 	doubly_linked_list/factories.c \
 	doubly_linked_list/handlers.c \
 	doubly_linked_list/properties.c \
-	parser/parser.c \
+	parser/validators.c \
 	push_swap.c
 OBJECTS := $(SOURCES:%.c=objs/%.o)
 DEPENDS := $(OBJECTS:%.o=%.d)
