@@ -1,5 +1,5 @@
 #include "doubly_linked_list.h"
-
+#include <stddef.h>
 
 int	length_dl_list(t_dl_list *head)
 {
@@ -8,7 +8,7 @@ int	length_dl_list(t_dl_list *head)
 
 	if (head == NULL)
 		return (0);
-	if (head->next == NULL && head->next == head)
+	if (head->next == NULL || head->next == head)
 		return (1);
 	first = head;
 	size = 2;

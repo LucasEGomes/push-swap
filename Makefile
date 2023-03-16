@@ -2,16 +2,20 @@ MAKEFLAGS += --no-builtin-rules
 
 NAME := push_swap
 
-CC := clang
-CFLAGS := -Wall -Wextra -Werror -g3 -MMD -I ./
-
 TEST_FOLDER := tests
 SOURCES_FOLDER := src
+OBJECTS_FOLDER := objs
+
+CC := clang
+CFLAGS := -Wall -Wextra -Werror -g3 -MMD -I $(PWD)/$(SOURCES_FOLDER)
+
 SOURCES := \
+	application/start.c \
+	doubly_linked_list/destructors.c \
 	doubly_linked_list/factories.c \
 	doubly_linked_list/handlers.c \
+	doubly_linked_list/properties.c \
 	main.c
-OBJECTS_FOLDER := objs
 OBJECTS := $(SOURCES:%.c=objs/%.o)
 DEPENDS := $(OBJECTS:%.o=%.d)
 
