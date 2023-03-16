@@ -1,6 +1,7 @@
 #include "application.h"
+#include <stddef.h>
 
-static int	initialize_app(t_app *app, t_dl_list *stack_a)
+static void	initialize_app(t_app *app, t_dl_list *stack_a)
 {
 	app->stack_a = stack_a;
 	app->size_a = length_dl_list(stack_a);
