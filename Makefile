@@ -7,7 +7,13 @@ SOURCES_FOLDER := src
 OBJECTS_FOLDER := objs
 
 CC := clang
-CFLAGS := -Wall -Wextra -Werror -g3 -MMD -I $(PWD)/$(SOURCES_FOLDER)
+CFLAGS := -Wall -Wextra -Werror -MMD -I $(PWD)/$(SOURCES_FOLDER)
+
+ifeq ($(DEBUG), 1)
+	CFLAGS += -g3 -fsanitize=address,leak,undefined -fno-omit-frame-pointer
+else
+	CFLAGS += -O2
+endif
 
 SOURCES := \
 	application/start.c \
