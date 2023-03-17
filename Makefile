@@ -29,6 +29,7 @@ SOURCES := \
 	parser/parser.c \
 	sorters/bubble_sort.c \
 	sorters/validators.c \
+	sorters/utils.c \
 	push_swap.c
 OBJECTS := $(SOURCES:%.c=objs/%.o)
 DEPENDS := $(OBJECTS:%.o=%.d)
