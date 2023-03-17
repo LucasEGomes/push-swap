@@ -1,4 +1,5 @@
 #include "application.h"
+#include "sorters/sorters.h"
 #include <stddef.h>
 
 static void	initialize_app(t_app *app, t_dl_list *stack_a)
@@ -14,5 +15,6 @@ int	start_application(t_dl_list *stack_a)
 	t_app	app;
 
 	initialize_app(&app, stack_a);
+	bubble_sort(&app, 1);
 	return (0);
 }

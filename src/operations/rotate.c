@@ -11,7 +11,7 @@ void	rotate_a(t_app *app, int verbose)
 	if (app->size_a > 0)
 		rotate(&(app->stack_a));
 	if (verbose)
-		write(STDOUT_FILENO, "ra", 2);
+		write(STDOUT_FILENO, "ra\n", 3);
 }
 
 void	rotate_b(t_app *app, int verbose)
@@ -19,7 +19,7 @@ void	rotate_b(t_app *app, int verbose)
 	if (app->size_b > 0)
 		rotate(&(app->stack_b));
 	if (verbose)
-		write(STDOUT_FILENO, "rb", 2);
+		write(STDOUT_FILENO, "rb\n", 3);
 }
 
 void	rotate_both(t_app *app, int verbose)
@@ -27,5 +27,5 @@ void	rotate_both(t_app *app, int verbose)
 	rotate_a(app, 0);
 	rotate_b(app, 0);
 	if (verbose)
-		write(STDOUT_FILENO, "rr", 2);
+		write(STDOUT_FILENO, "rr\n", 3);
 }
