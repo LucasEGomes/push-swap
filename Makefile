@@ -7,7 +7,13 @@ SOURCES_FOLDER := src
 OBJECTS_FOLDER := objs
 
 CC := clang
-CFLAGS := -Wall -Wextra -Werror -g3 -MMD -I $(PWD)/$(SOURCES_FOLDER)
+CFLAGS := -Wall -Wextra -Werror -MMD -I $(PWD)/$(SOURCES_FOLDER)
+
+ifeq ($(DEBUG), 1)
+	CFLAGS += -g3 -fsanitize=address,leak,undefined -fno-omit-frame-pointer
+else
+	CFLAGS += -O2
+endif
 
 SOURCES := \
 	application/start.c \
@@ -15,7 +21,9 @@ SOURCES := \
 	doubly_linked_list/factories.c \
 	doubly_linked_list/handlers.c \
 	doubly_linked_list/properties.c \
-	main.c
+	parser/validators.c \
+	parser/parser.c \
+	push_swap.c
 OBJECTS := $(SOURCES:%.c=objs/%.o)
 DEPENDS := $(OBJECTS:%.o=%.d)
 
