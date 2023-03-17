@@ -2,14 +2,16 @@
 #include "doubly_linked_list/doubly_linked_list.h"
 #include "parser/parser.h"
 #include <stddef.h>
+#include <stdio.h>
 
 static int	create_resources(t_dl_list **stack_a, int argc, char **argv)
 {
 	if (stack_a == NULL || validate_input(argc, argv))
 		return (1);
-	*stack_a = new_node_dl_list(42);
+	*stack_a = parse_number(argv[1]);
 	if (*stack_a == NULL)
 		return (1);
+	printf("%d\n", (*stack_a)->value);
 	return (0);
 }
 
