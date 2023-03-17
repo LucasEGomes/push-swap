@@ -21,6 +21,10 @@ SOURCES := \
 	doubly_linked_list/factories.c \
 	doubly_linked_list/handlers.c \
 	doubly_linked_list/properties.c \
+	operations/push.c \
+	operations/reverse_rotate.c \
+	operations/rotate.c \
+	operations/swap.c \
 	parser/validators.c \
 	parser/parser.c \
 	push_swap.c
