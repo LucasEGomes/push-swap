@@ -1,6 +1,11 @@
 int	is_digit(char value)
 {
-	return (value > '0' && value < '9');
+	return (value >= '0' && value <= '9');
+}
+
+int	is_space_or_null_byte(char value)
+{
+	return (value == ' ' || value == '\0');
 }
 
 static int	is_valid_input(char value)
