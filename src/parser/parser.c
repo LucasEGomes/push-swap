@@ -50,12 +50,14 @@ t_dl_list	*parse_string(t_dl_list *head, char *string)
 	t_dl_list	*node;
 
 	if (head == NULL)
+	{
 		head = create_head(string);
+		while (!is_space_or_null_byte(*string))
+			string++;
+	}
 	if (head == NULL)
 		return (NULL);
 	node = head->prev;
-	while (!is_space_or_null_byte(*string))
-		string++;
 	while (*string != '\0')
 	{
 		if (*string == ' ')
