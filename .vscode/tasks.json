@@ -1,4 +1,9 @@
 {
+    "options": {
+        "env":{
+            "DEBUG": "1"
+        }
+    },
     "tasks": [
         {
             "type": "shell",
