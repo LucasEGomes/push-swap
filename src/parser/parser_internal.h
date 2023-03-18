@@ -5,6 +5,5 @@
 
 int	is_digit(char value);
 int	is_space_or_null_byte(char value);
-int	validate_input(int argc, char **argv);
 
 #endif
