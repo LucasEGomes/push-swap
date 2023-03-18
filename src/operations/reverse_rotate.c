@@ -1,4 +1,5 @@
-#include "application/application.h"
+#include "entities/doubly_linked_list/doubly_linked_list.h"
+#include "entities/push_swap/push_swap.h"
 #include <unistd.h>
 
 static void	reverse_rotate(t_dl_list **head)
@@ -6,26 +7,26 @@ static void	reverse_rotate(t_dl_list **head)
 	*head = (*head)->prev;
 }
 
-void	reverse_rotate_a(t_app *app, int verbose)
+void	reverse_rotate_a(t_push_swap *push_swap, int verbose)
 {
-	if (app->size_a > 0)
-		reverse_rotate(&(app->stack_a));
+	if (push_swap->size_a > 0)
+		reverse_rotate(&(push_swap->stack_a));
 	if (verbose)
 		write(STDOUT_FILENO, "rra\n", 4);
 }
 
-void	reverse_rotate_b(t_app *app, int verbose)
+void	reverse_rotate_b(t_push_swap *push_swap, int verbose)
 {
-	if (app->size_b > 0)
-		reverse_rotate(&(app->stack_b));
+	if (push_swap->size_b > 0)
+		reverse_rotate(&(push_swap->stack_b));
 	if (verbose)
 		write(STDOUT_FILENO, "rrb\n", 4);
 }
 
-void	reverse_rotate_both(t_app *app, int verbose)
+void	reverse_rotate_both(t_push_swap *push_swap, int verbose)
 {
-	reverse_rotate_a(app, 0);
-	reverse_rotate_b(app, 0);
+	reverse_rotate_a(push_swap, 0);
+	reverse_rotate_b(push_swap, 0);
 	if (verbose)
 		write(STDOUT_FILENO, "rrr\n", 4);
 }

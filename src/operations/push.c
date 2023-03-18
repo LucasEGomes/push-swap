@@ -1,4 +1,5 @@
-#include "application/application.h"
+#include "entities/doubly_linked_list/doubly_linked_list.h"
+#include "entities/push_swap/push_swap.h"
 #include <unistd.h>
 
 static void	push(t_dl_list **source, t_dl_list **destiny)
@@ -22,25 +23,25 @@ static void	push(t_dl_list **source, t_dl_list **destiny)
 	connect_nodes_dl_list(*destiny, *destiny);
 }
 
-void	push_a(t_app *app, int verbose)
+void	push_a(t_push_swap *push_swap, int verbose)
 {
-	if (app->size_b > 0)
+	if (push_swap->size_b > 0)
 	{
-		push(&(app->stack_b), &(app->stack_a));
-		app->size_a++;
-		app->size_b--;
+		push(&(push_swap->stack_b), &(push_swap->stack_a));
+		push_swap->size_a++;
+		push_swap->size_b--;
 	}
 	if (verbose)
 		write(STDOUT_FILENO, "pa\n", 3);
 }
 
-void	push_b(t_app *app, int verbose)
+void	push_b(t_push_swap *push_swap, int verbose)
 {
-	if (app->size_a > 0)
+	if (push_swap->size_a > 0)
 	{
-		push(&(app->stack_a), &(app->stack_b));
-		app->size_a--;
-		app->size_b++;
+		push(&(push_swap->stack_a), &(push_swap->stack_b));
+		push_swap->size_a--;
+		push_swap->size_b++;
 	}
 	if (verbose)
 		write(STDOUT_FILENO, "pb\n", 3);
