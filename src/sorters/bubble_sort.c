@@ -15,7 +15,7 @@ int	bubble_sort(t_app *app, int verbose)
 		index = 0;
 		while (index < app->size_a)
 		{
-			steps+;
+			steps++;
 			if (index < app->size_a - 1
 				&& app->stack_a->value >= app->stack_a->next->value)
 			{
