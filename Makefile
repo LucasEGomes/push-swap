@@ -22,6 +22,7 @@ SOURCES := \
 	entities/doubly_linked_list/handlers.c \
 	entities/doubly_linked_list/properties.c \
 	entities/push_swap/setter.c \
+	helper/has_duplications.c \
 	helper/is_sorted.c \
 	operations/push.c \
 	operations/reverse_rotate.c \

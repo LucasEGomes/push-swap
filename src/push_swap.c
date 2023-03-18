@@ -35,7 +35,10 @@ int	main(int argc, char **argv)
 	if (create_resources(&stack_a, argc, argv) != 0)
 		return (1);
 	if (start_application(stack_a) != 0)
+	{
+		free_resources(stack_a);
 		return (1);
+	}
 	free_resources(stack_a);
 	return (0);
 }
