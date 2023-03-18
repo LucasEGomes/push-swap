@@ -3,6 +3,7 @@
 #include "operations/operations.h"
 #include "sorters/bubble_sort/bubble_sort.h"
 #include "sorters/merge_sort/merge_sort.h"
+#include "helper/helper.h"
 #include <stddef.h>
 
 static int	apply_offset(t_push_swap *push_swap, int offset, int verbose)
@@ -49,6 +50,11 @@ int	start_application(t_dl_list *stack_a)
 	if (copy_push_swap(&push_swap, &sorted))
 		return (1);
 	bubble_sort(&sorted, 0);
+	if (has_duplications(sorted.stack_a))
+	{
+		delete_list_dl_list(&(sorted.stack_a));
+		return (1);
+	}
 	replace_with_index_push_swap(&sorted, &push_swap);
 	setup(&push_swap, 0, 50, 1);
 	natural_merge_sort(&push_swap, 1);
