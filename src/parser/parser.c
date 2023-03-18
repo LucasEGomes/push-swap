@@ -26,6 +26,8 @@ t_dl_list	*parse_number(char *number)
 			node->value = node->value * 10 - (*number - '0');
 			number++;
 		}
+		if (!is_space_or_null_byte(*number))
+			return (abort_parse(&node));
 		return (node);
 	}
 	while (is_digit(*number))
