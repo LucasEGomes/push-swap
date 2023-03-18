@@ -1,5 +1,5 @@
-#include "doubly_linked_list/doubly_linked_list.h"
-#include "parser.h"
+#include "entities/doubly_linked_list/doubly_linked_list.h"
+#include "parser_internal.h"
 #include <stddef.h>
 
 static t_dl_list	*abort_parse(t_dl_list **node)
