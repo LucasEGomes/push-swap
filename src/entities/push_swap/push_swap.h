@@ -1,7 +1,6 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "entities/doubly_linked_list/doubly_linked_list.h"
-# include "entities/push_swap/push_swap.h"
 
 typedef struct s_push_swap
 {
