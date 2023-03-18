@@ -17,23 +17,24 @@ endif
 
 SOURCES := \
 	application/start.c \
-	doubly_linked_list/destructors.c \
-	doubly_linked_list/factories.c \
-	doubly_linked_list/handlers.c \
-	doubly_linked_list/properties.c \
+	entities/doubly_linked_list/destructors.c \
+	entities/doubly_linked_list/factories.c \
+	entities/doubly_linked_list/handlers.c \
+	entities/doubly_linked_list/properties.c \
+	entities/push_swap/setter.c \
+	helper/is_sorted.c \
 	operations/push.c \
 	operations/reverse_rotate.c \
 	operations/rotate.c \
 	operations/swap.c \
-	parser/validators.c \
 	parser/parser.c \
+	parser/validators.c \
+	sorters/bubble_sort/bubble_sort.c \
 	sorters/merge_sort/handlers.c \
 	sorters/merge_sort/merge_groups.c \
 	sorters/merge_sort/merge_sort.c \
 	sorters/merge_sort/utils.c \
 	sorters/merge_sort/validators.c \
-	sorters/bubble_sort.c \
-	sorters/validators.c \
 	push_swap.c
 OBJECTS := $(SOURCES:%.c=objs/%.o)
 DEPENDS := $(OBJECTS:%.o=%.d)

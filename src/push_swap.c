@@ -1,5 +1,5 @@
 #include "application/application.h"
-#include "doubly_linked_list/doubly_linked_list.h"
+#include "entities/doubly_linked_list/doubly_linked_list.h"
 #include "parser/parser.h"
 #include <stddef.h>
 

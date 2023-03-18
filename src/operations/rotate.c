@@ -1,4 +1,5 @@
-#include "application/application.h"
+#include "entities/doubly_linked_list/doubly_linked_list.h"
+#include "entities/push_swap/push_swap.h"
 #include <unistd.h>
 
 static void	rotate(t_dl_list **head)
@@ -6,26 +7,26 @@ static void	rotate(t_dl_list **head)
 	*head = (*head)->next;
 }
 
-void	rotate_a(t_app *app, int verbose)
+void	rotate_a(t_push_swap *push_swap, int verbose)
 {
-	if (app->size_a > 0)
-		rotate(&(app->stack_a));
+	if (push_swap->size_a > 0)
+		rotate(&(push_swap->stack_a));
 	if (verbose)
 		write(STDOUT_FILENO, "ra\n", 3);
 }
 
-void	rotate_b(t_app *app, int verbose)
+void	rotate_b(t_push_swap *push_swap, int verbose)
 {
-	if (app->size_b > 0)
-		rotate(&(app->stack_b));
+	if (push_swap->size_b > 0)
+		rotate(&(push_swap->stack_b));
 	if (verbose)
 		write(STDOUT_FILENO, "rb\n", 3);
 }
 
-void	rotate_both(t_app *app, int verbose)
+void	rotate_both(t_push_swap *push_swap, int verbose)
 {
-	rotate_a(app, 0);
-	rotate_b(app, 0);
+	rotate_a(push_swap, 0);
+	rotate_b(push_swap, 0);
 	if (verbose)
 		write(STDOUT_FILENO, "rr\n", 3);
 }

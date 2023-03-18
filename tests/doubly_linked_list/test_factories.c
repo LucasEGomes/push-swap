@@ -1,4 +1,4 @@
-#include "doubly_linked_list/doubly_linked_list.h"
+#include "entities/doubly_linked_list/doubly_linked_list.h"
 #include <criterion/criterion.h>
 #include <criterion/theories.h>
 #include <stddef.h>
