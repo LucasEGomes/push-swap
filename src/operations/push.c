@@ -9,16 +9,27 @@ static void	push(t_dl_list **source, t_dl_list **destiny)
 	if (new_head == *source)
 		new_head = NULL;
 	connect_nodes_dl_list((*source)->prev, (*source)->next);
-	connect_nodes_dl_list((*destiny)->prev, *source);
-	connect_nodes_dl_list(*source, *destiny);
-	*source = new_head;
+	if (*destiny != NULL)
+	{
+		connect_nodes_dl_list((*destiny)->prev, *source);
+		connect_nodes_dl_list(*source, *destiny);
+		*destiny = *source;
+		*source = new_head;
+		return ;
+	}
 	*destiny = *source;
+	*source = new_head;
+	connect_nodes_dl_list(*destiny, *destiny);
 }
 
 void	push_a(t_app *app, int verbose)
 {
 	if (app->size_b > 0)
+	{
 		push(&(app->stack_b), &(app->stack_a));
+		app->size_a++;
+		app->size_b--;
+	}
 	if (verbose)
 		write(STDOUT_FILENO, "pa\n", 3);
 }
@@ -26,7 +37,11 @@ void	push_a(t_app *app, int verbose)
 void	push_b(t_app *app, int verbose)
 {
 	if (app->size_a > 0)
+	{
 		push(&(app->stack_a), &(app->stack_b));
+		app->size_a--;
+		app->size_b++;
+	}
 	if (verbose)
 		write(STDOUT_FILENO, "pb\n", 3);
 }
