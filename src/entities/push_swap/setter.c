@@ -28,6 +28,7 @@ int	copy_push_swap(t_push_swap *source, t_push_swap *destiny)
 		index = 1;
 		while (index < source->size_a)
 		{
+			source_node = source_node->next;
 			node->next = new_node_dl_list(source_node->value);
 			if (node->next == NULL)
 			{
@@ -38,9 +39,15 @@ int	copy_push_swap(t_push_swap *source, t_push_swap *destiny)
 			node = node->next;
 			index++;
 		}
+		connect_nodes_dl_list(node, destiny->stack_a);
 	}
+	else
+		destiny->stack_a = NULL;
 	if (source->stack_b == NULL)
+	{
+		destiny->stack_b = NULL;
 		return (0);
+	}
 	source_node = source->stack_b;
 	destiny->stack_b = new_node_dl_list(source_node->value);
 	if (destiny->stack_b == NULL)
@@ -52,6 +59,7 @@ int	copy_push_swap(t_push_swap *source, t_push_swap *destiny)
 	index = 1;
 	while (index < source->size_b)
 	{
+		source_node = source_node->next;
 		node->next = new_node_dl_list(source_node->value);
 		if (node->next == NULL)
 		{
@@ -63,5 +71,25 @@ int	copy_push_swap(t_push_swap *source, t_push_swap *destiny)
 		node = node->next;
 		index++;
 	}
+	connect_nodes_dl_list(node, destiny->stack_b);
 	return (0);
+}
+
+void	replace_with_index_push_swap(t_push_swap *source, t_push_swap *destiny)
+{
+	t_dl_list	*head;
+	int			index;
+
+	head = destiny->stack_a;
+	index = 0;
+	while(index < source->size_a)
+	{
+		while (source->stack_a->value != destiny->stack_a->value)
+			destiny->stack_a = destiny->stack_a->next;
+		destiny->stack_a->value = index;
+		source->stack_a = source->stack_a->next;
+		index++;
+	}
+	while (destiny->stack_a != head)
+		destiny->stack_a = destiny->stack_a->next;
 }

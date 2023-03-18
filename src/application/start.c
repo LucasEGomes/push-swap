@@ -48,6 +48,8 @@ int	start_application(t_dl_list *stack_a)
 	initialize_push_swap(&push_swap, stack_a);
 	if (copy_push_swap(&push_swap, &sorted))
 		return (1);
+	bubble_sort(&sorted, 0);
+	replace_with_index_push_swap(&sorted, &push_swap);
 	setup(&push_swap, 0, 50, 1);
 	natural_merge_sort(&push_swap, 1);
 	delete_list_dl_list(&(sorted.stack_a));
