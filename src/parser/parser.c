@@ -11,28 +11,32 @@ static t_dl_list	*abort_parse(t_dl_list **node)
 t_dl_list	*parse_number(char *number)
 {
 	t_dl_list	*node;
-	int			signal;
 
 	node = new_node_dl_list(0);
 	if (node == NULL)
 		return (NULL);
 	node->value = 0;
-	signal = 1;
 	if (*number == '-')
 	{
-		signal = -1;
 		number++;
+		while (is_digit(*number))
+		{
+			if (node->value < (-__INT_MAX__ - 1) / 10 || node->value * 10 < (-__INT_MAX__ - 1) + (*number - '0'))
+				return (abort_parse(&node));
+			node->value = node->value * 10 - (*number - '0');
+			number++;
+		}
+		return (node);
 	}
 	while (is_digit(*number))
 	{
-		node->value = node->value * 10 + (*number - '0');
-		if (node->value < 0)
+		if (node->value > __INT_MAX__ / 10 || node->value * 10 > __INT_MAX__ - (*number - '0'))
 			return (abort_parse(&node));
+		node->value = node->value * 10 + (*number - '0');
 		number++;
 	}
 	if (!is_space_or_null_byte(*number))
 		return (abort_parse(&node));
-	node->value *= signal;
 	return (node);
 }
 
