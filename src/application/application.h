@@ -1,6 +1,6 @@
 #ifndef APPLICATION_H
 # define APPLICATION_H
-# include "doubly_linked_list/doubly_linked_list.h"
+# include "entities/doubly_linked_list/doubly_linked_list.h"
 
 typedef struct s_app
 {
