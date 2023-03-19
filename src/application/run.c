@@ -41,7 +41,14 @@ static void	setup(t_push_swap *push_swap, int offset, int rate, int verbose)
 	apply_rate(push_swap, rate, verbose);
 }
 
-int	start_application(t_dl_list *stack_a)
+static int	free_application_resources(t_push_swap *push_swap, int return_code)
+{
+	delete_list_dl_list(&(push_swap->stack_a));
+	delete_list_dl_list(&(push_swap->stack_b));
+	return (return_code);
+}
+
+int	run_application(t_dl_list *stack_a)
 {
 	t_push_swap	push_swap;
 	t_push_swap	sorted;
@@ -51,13 +58,9 @@ int	start_application(t_dl_list *stack_a)
 		return (1);
 	bubble_sort(&sorted, 0);
 	if (has_duplications(sorted.stack_a))
-	{
-		delete_list_dl_list(&(sorted.stack_a));
-		return (1);
-	}
+		return (free_application_resources(&sorted, 1));
 	replace_with_index_push_swap(&sorted, &push_swap);
 	setup(&push_swap, 0, 50, 1);
 	natural_merge_sort(&push_swap, 1);
-	delete_list_dl_list(&(sorted.stack_a));
-	return (0);
+	return (free_application_resources(&sorted, 0));
 }
