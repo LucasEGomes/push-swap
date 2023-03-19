@@ -10,6 +10,6 @@ typedef struct s_app
 	int			size_b;
 }	t_app;
 
-int	start_application(t_dl_list *stack_a);
+int	run_application(t_dl_list *stack_a);
 
 #endif

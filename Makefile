@@ -16,7 +16,7 @@ else
 endif
 
 SOURCES := \
-	application/start.c \
+	application/run.c \
 	entities/doubly_linked_list/destructors.c \
 	entities/doubly_linked_list/factories.c \
 	entities/doubly_linked_list/handlers.c \
