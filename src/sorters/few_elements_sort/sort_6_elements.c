@@ -7,12 +7,10 @@ int	sort_6_elements(t_push_swap *push_swap, int verbose)
 {
 	int	steps;
 
-	push_b(push_swap, verbose);
-	push_b(push_swap, verbose);
-	steps = 2;
-	steps += sort_4_elements(push_swap, verbose);
-	steps += insert_top_b_into_a(push_swap, verbose);
-	steps += insert_top_b_into_a(push_swap, verbose);
-	steps += move_stack_a_to_zero(push_swap, verbose);
+	steps = split_stack_a(push_swap, 3, verbose);
+	steps += sort_stack_3_elements(push_swap, 0, verbose);
+	steps += sort_stack_3_elements(push_swap, 1, verbose);
+	steps += insert_range_b_into_a(push_swap, 3, verbose);
+	steps += move_stack_a_to_value(push_swap, 0, verbose);
 	return (steps);
 }
