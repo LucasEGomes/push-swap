@@ -22,8 +22,12 @@ SOURCES := \
 	entities/doubly_linked_list/handlers.c \
 	entities/doubly_linked_list/properties.c \
 	entities/push_swap/setter.c \
+	helper/find_element.c \
+	helper/get_distance.c \
 	helper/has_duplications.c \
+	helper/insert_top_b_into_a.c \
 	helper/is_sorted.c \
+	helper/move_stack_a_to_zero.c \
 	operations/push.c \
 	operations/reverse_rotate.c \
 	operations/rotate.c \
@@ -31,7 +35,6 @@ SOURCES := \
 	parser/parser.c \
 	parser/validators.c \
 	sorters/bubble_sort/bubble_sort.c \
-	sorters/merge_sort/handlers.c \
 	sorters/merge_sort/merge_groups.c \
 	sorters/merge_sort/merge_sort.c \
 	sorters/merge_sort/utils.c \

@@ -1,4 +1,5 @@
 #include "merge_sort_internal.h"
+#include "helper/helper.h"
 #include "operations/operations.h"
 
 static int	move_unmerged_b_to_top(t_push_swap *push_swap, int moves, int verbose)
