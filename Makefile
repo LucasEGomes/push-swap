@@ -25,9 +25,11 @@ SOURCES := \
 	helper/find_element.c \
 	helper/get_distance.c \
 	helper/has_duplications.c \
+	helper/insert_range_b_into_a.c \
 	helper/insert_top_b_into_a.c \
 	helper/is_sorted.c \
-	helper/move_stack_a_to_zero.c \
+	helper/move_stack_a_to_value.c \
+	helper/split_stack_a.c \
 	operations/push.c \
 	operations/reverse_rotate.c \
 	operations/rotate.c \
@@ -35,6 +37,15 @@ SOURCES := \
 	parser/parser.c \
 	parser/validators.c \
 	sorters/bubble_sort/bubble_sort.c \
+	sorters/few_elements_sort/few_elements_sort.c \
+	sorters/few_elements_sort/sort_2_elements.c \
+	sorters/few_elements_sort/sort_3_elements.c \
+	sorters/few_elements_sort/sort_4_elements.c \
+	sorters/few_elements_sort/sort_5_elements.c \
+	sorters/few_elements_sort/sort_6_elements.c \
+	sorters/few_elements_sort/sort_7_elements.c \
+	sorters/few_elements_sort/sort_8_elements.c \
+	sorters/few_elements_sort/sort_patterns_of_3.c \
 	sorters/merge_sort/merge_groups.c \
 	sorters/merge_sort/merge_sort.c \
 	sorters/merge_sort/utils.c \
