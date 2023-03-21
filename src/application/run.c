@@ -55,6 +55,8 @@ int	run_application(t_dl_list *stack_a)
 	t_push_swap	auxiliary;
 
 	initialize_push_swap(&push_swap, stack_a);
+	if (push_swap.size_a < 2)
+		return (0);
 	if (copy_push_swap(&push_swap, &auxiliary))
 		return (1);
 	bubble_sort(&auxiliary, 0);
