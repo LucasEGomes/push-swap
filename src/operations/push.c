@@ -23,7 +23,7 @@ static void	push(t_dl_list **source, t_dl_list **destiny)
 	connect_nodes_dl_list(*destiny, *destiny);
 }
 
-void	push_a(t_push_swap *push_swap, int verbose)
+int	push_a(t_push_swap *push_swap, int verbose)
 {
 	if (push_swap->size_b > 0)
 	{
@@ -33,9 +33,10 @@ void	push_a(t_push_swap *push_swap, int verbose)
 	}
 	if (verbose)
 		write(STDOUT_FILENO, "pa\n", 3);
+	return (1);
 }
 
-void	push_b(t_push_swap *push_swap, int verbose)
+int	push_b(t_push_swap *push_swap, int verbose)
 {
 	if (push_swap->size_a > 0)
 	{
@@ -45,4 +46,5 @@ void	push_b(t_push_swap *push_swap, int verbose)
 	}
 	if (verbose)
 		write(STDOUT_FILENO, "pb\n", 3);
+	return (1);
 }
