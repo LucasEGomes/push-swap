@@ -1,4 +1,5 @@
 #include "merge_sort_internal.h"
+#include "helper/helper.h"
 #include "operations/operations.h"
 
 static int	move_unmerged_b_to_top(t_push_swap *push_swap, int moves, int verbose)
@@ -40,6 +41,6 @@ int	natural_merge_sort(t_push_swap *push_swap, int verbose)
 		steps += merge_stacks(push_swap, size, verbose);
 	while (push_swap->size_b > 0)
 		steps += insert_top_b_into_a(push_swap, verbose);
-	steps += move_stack_a_to_zero(push_swap, verbose);
+	steps += move_stack_a_to_value(push_swap, 0, verbose);
 	return (steps);
 }
