@@ -82,7 +82,7 @@ void	replace_with_index_push_swap(t_push_swap *source, t_push_swap *destiny)
 
 	head = destiny->stack_a;
 	index = 0;
-	while(index < source->size_a)
+	while (index < source->size_a)
 	{
 		while (source->stack_a->value != destiny->stack_a->value)
 			destiny->stack_a = destiny->stack_a->next;

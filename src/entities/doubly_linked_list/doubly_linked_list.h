@@ -8,7 +8,7 @@ typedef struct s_doubly_linked_list
 	t_doubly_linked_list	*next;
 	int						value;
 }	t_doubly_linked_list;
-typedef t_doubly_linked_list t_dl_list;
+typedef t_doubly_linked_list	t_dl_list;
 
 // Factories
 

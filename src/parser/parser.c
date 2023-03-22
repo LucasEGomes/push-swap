@@ -8,14 +8,14 @@ static t_dl_list	*abort_parse(t_dl_list **node)
 	return (NULL);
 }
 
-static int is_int_underflow(int current, int addend)
+static int	is_int_underflow(int current, int addend)
 {
 	const int	int_min = -__INT_MAX__ - 1;
 
 	return (current < int_min / 10 || current * 10 < int_min + addend);
 }
 
-static int is_int_overflow(int current, int addend)
+static int	is_int_overflow(int current, int addend)
 {
 	return (current > __INT_MAX__ / 10 || current * 10 > __INT_MAX__ - addend);
 }

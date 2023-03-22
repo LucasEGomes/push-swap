@@ -3,7 +3,7 @@
 int	find_element(t_dl_list *head, int total, int value)
 {
 	t_dl_list	*node;
-	int	index;
+	int			index;
 
 	index = 0;
 	node = head;
