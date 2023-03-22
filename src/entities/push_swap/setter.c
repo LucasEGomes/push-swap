@@ -77,19 +77,21 @@ int	copy_push_swap(t_push_swap *source, t_push_swap *destiny)
 
 void	replace_with_index_push_swap(t_push_swap *source, t_push_swap *destiny)
 {
-	t_dl_list	*head;
 	int			index;
+	int			filled;
 
-	head = destiny->stack_a;
 	index = 0;
-	while(index < source->size_a)
+	filled = 0;
+	while(filled < destiny->size_a)
 	{
 		while (source->stack_a->value != destiny->stack_a->value)
-			destiny->stack_a = destiny->stack_a->next;
+		{
+			source->stack_a = source->stack_a->next;
+			index = (index + 1) % source->size_a;
+			
+		}
 		destiny->stack_a->value = index;
-		source->stack_a = source->stack_a->next;
-		index++;
-	}
-	while (destiny->stack_a != head)
 		destiny->stack_a = destiny->stack_a->next;
+		filled++;
+	}
 }

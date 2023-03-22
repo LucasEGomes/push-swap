@@ -55,11 +55,15 @@ int	run_application(t_dl_list *stack_a)
 	t_push_swap	auxiliary;
 
 	initialize_push_swap(&push_swap, stack_a);
+	if (push_swap.size_a < 2)
+		return (0);
 	if (copy_push_swap(&push_swap, &auxiliary))
 		return (1);
 	bubble_sort(&auxiliary, 0);
 	if (has_duplications(auxiliary.stack_a))
 		return (free_application_resources(&auxiliary, 1));
+	if (is_sorted(&push_swap))
+		return (0);
 	replace_with_index_push_swap(&auxiliary, &push_swap);
 	if (push_swap.size_a <= 8)
 		few_elements_sort(&push_swap, 1);
