@@ -1,4 +1,7 @@
 MAKEFLAGS += --no-builtin-rules
+ifndef VERBOSE
+	MAKEFLAGS += -s
+endif
 
 NAME := push_swap
 
@@ -9,7 +12,7 @@ OBJECTS_FOLDER := objs
 CC := clang
 CFLAGS := -Wall -Wextra -Werror -MMD -I $(PWD)/$(SOURCES_FOLDER)
 
-ifeq ($(DEBUG), 1)
+ifdef DEBUG
 	CFLAGS += -g3 -fsanitize=address,leak,undefined -fno-omit-frame-pointer
 else
 	CFLAGS += -O2
@@ -17,6 +20,7 @@ endif
 
 SOURCES := \
 	application/run.c \
+	application/hyperparameter_optimization.c \
 	entities/doubly_linked_list/destructors.c \
 	entities/doubly_linked_list/factories.c \
 	entities/doubly_linked_list/handlers.c \
