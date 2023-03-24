@@ -38,6 +38,7 @@ int	copy_push_swap(t_push_swap *source, t_push_swap *destiny)
 
 void	replace_with_index_push_swap(t_push_swap *source, t_push_swap *destiny)
 {
+	t_dl_list	*head;
 	int			index;
 	int			replaced;
 
@@ -58,4 +59,3 @@ void	replace_with_index_push_swap(t_push_swap *source, t_push_swap *destiny)
 	while (source->stack_a != head)
 		source->stack_a = source->stack_a->next;
 }
-

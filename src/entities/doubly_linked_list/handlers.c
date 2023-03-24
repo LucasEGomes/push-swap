@@ -10,6 +10,20 @@ int	connect_nodes_dl_list(t_dl_list *left, t_dl_list *right)
 	return (0);
 }
 
+void	replace_stack(t_dl_list *source, t_dl_list *destiny)
+{
+	t_dl_list	*head;
+
+	head = source;
+	while (source->next != head)
+	{
+		destiny->value = source->value;
+		destiny = destiny->next;
+		source = source->next;
+	}
+	destiny->value = source->value;
+}
+
 int	transform_into_circular_dl_list(t_dl_list *head)
 {
 	t_dl_list	*last;

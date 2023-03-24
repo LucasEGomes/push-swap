@@ -22,6 +22,7 @@ int			length_dl_list(t_dl_list *head);
 // Handlers
 
 int			connect_nodes_dl_list(t_dl_list *left, t_dl_list *right);
+void		replace_stack(t_dl_list *source, t_dl_list *destiny);
 int			transform_into_circular_dl_list(t_dl_list *head);
 
 // Destructors
