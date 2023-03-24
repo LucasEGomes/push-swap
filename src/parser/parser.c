@@ -23,6 +23,8 @@ static int	is_int_overflow(int current, int addend)
 static t_dl_list	*negative_number(t_dl_list *node, char *number)
 {
 	number++;
+	if (!is_digit(*number))
+		return (abort_parse(&node));
 	while (is_digit(*number))
 	{
 		if (is_int_underflow(node->value, *number - '0'))
