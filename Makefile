@@ -34,6 +34,8 @@ SOURCES := \
 	operations/reverse_rotate.c \
 	operations/rotate.c \
 	operations/swap.c \
+	parser/error_handler.c \
+	parser/parse_numbers.c \
 	parser/parser.c \
 	parser/validators.c \
 	sorters/bubble_sort/bubble_sort.c \
