@@ -1,11 +1,11 @@
-#include "helper/helper.h"
 #include "entities/push_swap/push_swap.h"
+#include "helper/helper.h"
 #include "operations/operations.h"
 
 int	bubble_sort(t_push_swap *push_swap, int verbose)
 {
-	int	not_sorted;
 	int	index;
+	int	not_sorted;
 	int	steps;
 
 	not_sorted = 0;

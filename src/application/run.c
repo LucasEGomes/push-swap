@@ -26,8 +26,8 @@ static int	apply_offset(t_push_swap *push_swap, int offset, int verbose)
 
 static int	apply_rate(t_push_swap *push_swap, int rate, int verbose)
 {
-	int	steps;
 	int	pushes;
+	int	steps;
 
 	pushes = rate * push_swap->size_a / 100;
 	steps = pushes;
@@ -51,8 +51,8 @@ static int	free_application_resources(t_push_swap *push_swap, int return_code)
 
 int	run_application(t_dl_list *stack_a)
 {
-	t_push_swap	push_swap;
 	t_push_swap	auxiliary;
+	t_push_swap	push_swap;
 
 	initialize_push_swap(&push_swap, stack_a);
 	if (push_swap.size_a < 2)
@@ -63,7 +63,7 @@ int	run_application(t_dl_list *stack_a)
 	if (has_duplications(auxiliary.stack_a))
 		return (free_application_resources(&auxiliary, 1));
 	if (is_sorted(&push_swap))
-		return (0);
+		return (free_application_resources(&auxiliary, 0));
 	replace_with_index_push_swap(&auxiliary, &push_swap);
 	if (push_swap.size_a <= 8)
 		few_elements_sort(&push_swap, 1);

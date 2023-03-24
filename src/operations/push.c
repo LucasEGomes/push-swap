@@ -5,7 +5,7 @@
 static void	push(t_dl_list **source, t_dl_list **destiny)
 {
 	t_dl_list	*new_head;
-	
+
 	new_head = (*source)->next;
 	if (new_head == *source)
 		new_head = NULL;

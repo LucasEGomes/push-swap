@@ -13,7 +13,7 @@ int	few_elements_sort(t_push_swap *push_swap, int verbose)
 		sort_8_elements
 	};
 
-	if (push_swap->size_a > 8)
+	if (push_swap->size_a > 8 || push_swap->size_a < 2)
 		return (0);
 	return (sorters[push_swap->size_a - 2](push_swap, verbose));
 }

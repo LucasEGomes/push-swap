@@ -1,5 +1,5 @@
-#include "few_elements_sort_internal.h"
 #include "entities/push_swap/push_swap.h"
+#include "few_elements_sort_internal.h"
 #include "operations/operations.h"
 
 int	sort_stack_3_elements(t_push_swap *push_swap, int is_stack_a, int verbose)

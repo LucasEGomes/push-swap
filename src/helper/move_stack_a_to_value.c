@@ -1,6 +1,6 @@
 #include "entities/push_swap/push_swap.h"
-#include "operations/operations.h"
 #include "helper.h"
+#include "operations/operations.h"
 
 int	move_stack_a_to_value(t_push_swap *push_swap, int value, int verbose)
 {

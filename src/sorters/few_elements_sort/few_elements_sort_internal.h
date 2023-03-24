@@ -2,7 +2,7 @@
 # define FEW_ELEMENTS_SORT_INTERNAL_H
 # include "entities/push_swap/push_swap.h"
 
-typedef int (*t_sorter)(t_push_swap *push_swap, int verbose);
+typedef int	(*t_sorter)(t_push_swap *push_swap, int verbose);
 
 // Patterns of 3 elements
 

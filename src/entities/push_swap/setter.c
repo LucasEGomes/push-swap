@@ -1,5 +1,5 @@
-#include "entities/push_swap/push_swap.h"
 #include "entities/doubly_linked_list/doubly_linked_list.h"
+#include "entities/push_swap/push_swap.h"
 #include <stddef.h>
 
 void	initialize_push_swap(t_push_swap *push_swap, t_dl_list *stack_a)
@@ -12,34 +12,13 @@ void	initialize_push_swap(t_push_swap *push_swap, t_dl_list *stack_a)
 
 int	copy_push_swap(t_push_swap *source, t_push_swap *destiny)
 {
-	int			index;
-	t_dl_list	*node;
-	t_dl_list	*source_node;
-
 	destiny->size_a = source->size_a;
 	destiny->size_b = source->size_b;
 	if (source->stack_a != NULL)
 	{
-		source_node = source->stack_a;
-		destiny->stack_a = new_node_dl_list(source_node->value);
+		destiny->stack_a = copy_dl_list(source->stack_a);
 		if (destiny->stack_a == NULL)
 			return (1);
-		node = destiny->stack_a;
-		index = 1;
-		while (index < source->size_a)
-		{
-			source_node = source_node->next;
-			node->next = new_node_dl_list(source_node->value);
-			if (node->next == NULL)
-			{
-				delete_list_dl_list(&(destiny->stack_a));
-				return (1);
-			}
-			connect_nodes_dl_list(node, node->next);
-			node = node->next;
-			index++;
-		}
-		connect_nodes_dl_list(node, destiny->stack_a);
 	}
 	else
 		destiny->stack_a = NULL;
@@ -48,50 +27,35 @@ int	copy_push_swap(t_push_swap *source, t_push_swap *destiny)
 		destiny->stack_b = NULL;
 		return (0);
 	}
-	source_node = source->stack_b;
-	destiny->stack_b = new_node_dl_list(source_node->value);
+	destiny->stack_b = copy_dl_list(source->stack_b);
 	if (destiny->stack_b == NULL)
 	{
 		delete_list_dl_list(&(destiny->stack_a));
 		return (1);
 	}
-	node = destiny->stack_b;
-	index = 1;
-	while (index < source->size_b)
-	{
-		source_node = source_node->next;
-		node->next = new_node_dl_list(source_node->value);
-		if (node->next == NULL)
-		{
-			delete_list_dl_list(&(destiny->stack_a));
-			delete_list_dl_list(&(destiny->stack_b));
-			return (1);
-		}
-		connect_nodes_dl_list(node, node->next);
-		node = node->next;
-		index++;
-	}
-	connect_nodes_dl_list(node, destiny->stack_b);
 	return (0);
 }
 
 void	replace_with_index_push_swap(t_push_swap *source, t_push_swap *destiny)
 {
 	int			index;
-	int			filled;
+	int			replaced;
 
+	head = source->stack_a;
 	index = 0;
-	filled = 0;
-	while(filled < destiny->size_a)
+	replaced = 0;
+	while (replaced < source->size_a)
 	{
 		while (source->stack_a->value != destiny->stack_a->value)
 		{
 			source->stack_a = source->stack_a->next;
 			index = (index + 1) % source->size_a;
-			
 		}
 		destiny->stack_a->value = index;
 		destiny->stack_a = destiny->stack_a->next;
-		filled++;
+		replaced++;
 	}
+	while (source->stack_a != head)
+		source->stack_a = source->stack_a->next;
 }
+

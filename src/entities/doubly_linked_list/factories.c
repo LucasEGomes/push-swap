@@ -13,3 +13,31 @@ t_dl_list	*new_node_dl_list(int value)
 	node->next = NULL;
 	return (node);
 }
+
+t_dl_list	*copy_dl_list(t_dl_list *source)
+{
+	t_dl_list	*node;
+	t_dl_list	*result;
+	int			size;
+
+	result = new_node_dl_list(source->value);
+	if (result == NULL)
+		return (NULL);
+	node = result;
+	size = length_dl_list(source);
+	while (size > 1)
+	{
+		source = source->next;
+		node->next = new_node_dl_list(source->value);
+		if (node->next == NULL)
+		{
+			delete_list_dl_list(&(result));
+			return (NULL);
+		}
+		connect_nodes_dl_list(node, node->next);
+		node = node->next;
+		size--;
+	}
+	connect_nodes_dl_list(node, result);
+	return (result);
+}

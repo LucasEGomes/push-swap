@@ -3,12 +3,10 @@
 #include "parser/parser.h"
 #include <unistd.h>
 
-
 static int	create_resources(t_dl_list **stack_a, int argc, char **argv)
 {
 	int	index;
-	if (validate_input(argc, argv))
-		return (1);
+
 	index = 1;
 	while (index < argc)
 	{
@@ -39,6 +37,8 @@ int	main(int argc, char **argv)
 	(void) argv;
 	if (argc < 2)
 		return (0);
+	if (validate_input(argc, argv))
+		return (throw_program_exception(NULL));
 	stack_a = NULL;
 	if (create_resources(&stack_a, argc, argv) != 0)
 		return (throw_program_exception(NULL));
