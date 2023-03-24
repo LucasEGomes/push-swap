@@ -16,8 +16,8 @@ t_dl_list	*new_node_dl_list(int value)
 
 t_dl_list	*copy_dl_list(t_dl_list *source)
 {
-	t_dl_list	*result;
 	t_dl_list	*node;
+	t_dl_list	*result;
 	int			size;
 
 	result = new_node_dl_list(source->value);

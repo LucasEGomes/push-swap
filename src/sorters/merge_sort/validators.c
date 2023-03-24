@@ -1,5 +1,5 @@
-#include "merge_sort_internal.h"
 #include "entities/doubly_linked_list/doubly_linked_list.h"
+#include "merge_sort_internal.h"
 
 int	is_single_group(t_dl_list *node, int size)
 {

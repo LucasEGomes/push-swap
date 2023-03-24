@@ -13,8 +13,8 @@ static t_dl_list	*create_head(char *string)
 
 int	validate_input(int argc, char **argv)
 {
-	int		index;
 	char	*string;
+	int		index;
 
 	index = 1;
 	while (index < argc)

@@ -1,7 +1,7 @@
-#include "few_elements_sort_internal.h"
 #include "entities/push_swap/push_swap.h"
-#include "operations/operations.h"
+#include "few_elements_sort_internal.h"
 #include "helper/helper.h"
+#include "operations/operations.h"
 
 int	sort_5_elements(t_push_swap *push_swap, int verbose)
 {

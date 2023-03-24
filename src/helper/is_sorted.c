@@ -1,3 +1,4 @@
+#include "entities/doubly_linked_list/doubly_linked_list.h"
 #include "entities/push_swap/push_swap.h"
 #include <stddef.h>
 

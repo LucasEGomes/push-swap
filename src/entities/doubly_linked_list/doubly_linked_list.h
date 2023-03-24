@@ -4,16 +4,16 @@
 typedef struct s_doubly_linked_list	t_doubly_linked_list;
 typedef struct s_doubly_linked_list
 {
-	t_doubly_linked_list	*prev;
 	t_doubly_linked_list	*next;
+	t_doubly_linked_list	*prev;
 	int						value;
 }	t_doubly_linked_list;
 typedef t_doubly_linked_list		t_dl_list;
 
 // Factories
 
-t_dl_list	*new_node_dl_list(int value);
 t_dl_list	*copy_dl_list(t_dl_list *source);
+t_dl_list	*new_node_dl_list(int value);
 
 // Properties
 

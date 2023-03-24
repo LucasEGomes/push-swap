@@ -26,8 +26,8 @@ static int	apply_offset(t_push_swap *push_swap, int offset, int verbose)
 
 static int	apply_rate(t_push_swap *push_swap, int rate, int verbose)
 {
-	int	steps;
 	int	pushes;
+	int	steps;
 
 	pushes = rate * push_swap->size_a / 100;
 	steps = pushes;
@@ -51,8 +51,8 @@ static int	free_application_resources(t_push_swap *push_swap, int return_code)
 
 int	run_application(t_dl_list *stack_a)
 {
-	t_push_swap	push_swap;
 	t_push_swap	auxiliary;
+	t_push_swap	push_swap;
 
 	initialize_push_swap(&push_swap, stack_a);
 	if (push_swap.size_a < 2)

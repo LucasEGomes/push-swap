@@ -3,8 +3,8 @@
 
 int	length_dl_list(t_dl_list *head)
 {
-	int			size;
 	t_dl_list	*first;
+	int			size;
 
 	if (head == NULL)
 		return (0);

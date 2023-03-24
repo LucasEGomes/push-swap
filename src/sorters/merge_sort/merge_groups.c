@@ -1,5 +1,5 @@
-#include "merge_sort_internal.h"
 #include "operations/operations.h"
+#include "merge_sort_internal.h"
 
 static int	can_push_a(t_push_swap *push_swap)
 {
@@ -13,9 +13,9 @@ static int	can_push_b(t_push_swap *push_swap)
 
 int	merge_groups_a_to_b(t_push_swap *push_swap, int verbose)
 {
+	int	steps;
 	int	steps_a;
 	int	steps_b;
-	int	steps;
 
 	steps_a = get_group_size(push_swap->stack_a, push_swap->size_a, 1, 1);
 	steps_b = get_group_size(push_swap->stack_b, push_swap->size_b, 0, 0);
@@ -38,9 +38,9 @@ int	merge_groups_a_to_b(t_push_swap *push_swap, int verbose)
 
 int	merge_groups_b_to_a(t_push_swap *push_swap, int verbose)
 {
+	int	steps;
 	int	steps_a;
 	int	steps_b;
-	int	steps;
 
 	steps_a = get_group_size(push_swap->stack_a, push_swap->size_a, 1, 0);
 	steps_b = get_group_size(push_swap->stack_b, push_swap->size_b, 0, 1);

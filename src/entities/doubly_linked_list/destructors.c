@@ -3,17 +3,17 @@
 
 void	delete_node_dl_list(t_dl_list *node)
 {
-	node->value = 0;
 	node->next = NULL;
 	node->prev = NULL;
+	node->value = 0;
 	free(node);
 }
 
 void	delete_list_dl_list(t_dl_list **head)
 {
 	t_dl_list	*first;
-	t_dl_list	*node;
 	t_dl_list	*next;
+	t_dl_list	*node;
 
 	if (head == NULL || *head == NULL)
 		return ;
