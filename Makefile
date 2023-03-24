@@ -20,7 +20,7 @@ endif
 
 SOURCES := \
 	application/run.c \
-	application/hyperparameter_optimization.c \
+	application/optimize_sort_steps.c \
 	entities/doubly_linked_list/destructors.c \
 	entities/doubly_linked_list/factories.c \
 	entities/doubly_linked_list/handlers.c \
