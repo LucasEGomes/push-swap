@@ -1,5 +1,6 @@
 #include "entities/doubly_linked_list/doubly_linked_list.h"
 #include "entities/push_swap/push_swap.h"
+#include "entities/sorter_parameters/sorter_parameters.h"
 #include "operations/operations.h"
 #include "sorters/bubble_sort/bubble_sort.h"
 #include "sorters/few_elements_sort/few_elements_sort.h"
@@ -7,12 +8,6 @@
 #include "helper/helper.h"
 #include <stddef.h>
 #include <stdio.h>
-
-#define OFFSET_LOWER_LIMIT -50
-#define OFFSET_UPPER_LIMIT 50
-#define OFFSET_SIZE_RATE_LIMIT 50
-#define RATE_LOWER_LIMIT 1
-#define RATE_UPPER_LIMIT 99
 
 static int	apply_offset(t_push_swap *push_swap, int offset, int verbose)
 {
@@ -53,44 +48,36 @@ static int	setup(t_push_swap *push_swap, int offset, int rate, int verbose)
 	return (steps);
 }
 
+static void	run_iteration(t_sorter_params *params, t_sorter_params *best_params)
+{
+	replace_stack(original->stack_a, push_swap->stack_a);
+	params->steps = setup(push_swap, params->offset, params->rate, 0);
+	params->steps += natural_merge_sort(push_swap, 0);
+	if (params->steps < best_params->steps)
+		copy_sorter_params(params, best_params);
+}
+
 void	optimize_sort_steps(t_push_swap *push_swap, t_push_swap *original)
 {
-	int	best_offset;
-	int	offset;
-	int	limit_offset;
-	int	best_rate;
-	int	rate;
-	int	best_steps;
-	int	steps;
-	
-	offset = OFFSET_LOWER_LIMIT;
-	if (offset < -push_swap->size_a * OFFSET_SIZE_RATE_LIMIT / 100)
-		offset = -push_swap->size_a * OFFSET_SIZE_RATE_LIMIT / 100;
-	limit_offset = OFFSET_UPPER_LIMIT;
-	if (limit_offset > push_swap->size_a * OFFSET_SIZE_RATE_LIMIT / 100)
-		limit_offset = push_swap->size_a * OFFSET_SIZE_RATE_LIMIT / 100;
-	best_offset = __INT_MAX__;
-	best_rate = __INT_MAX__;
-	best_steps = __INT_MAX__;
-	while (offset < limit_offset)
+	int				offset_limit;
+	t_sorter_params	params;
+	t_sorter_params	best_params;
+
+	params.offset = OFFSET_LOWER_LIMIT;
+	if (params.offset < -push_swap->size_a * OFFSET_SIZE_RATE_LIMIT / 100)
+		params.offset = -push_swap->size_a * OFFSET_SIZE_RATE_LIMIT / 100;
+	offset_limit = OFFSET_UPPER_LIMIT;
+	if (offset_limit > push_swap->size_a * OFFSET_SIZE_RATE_LIMIT / 100)
+		offset_limit = push_swap->size_a * OFFSET_SIZE_RATE_LIMIT / 100;
+	set_sorter_params(&best_params, __INT_MAX__, __INT_MAX__, __INT_MAX__);
+	while (params.offset < offset_limit)
 	{
-		rate = RATE_LOWER_LIMIT;
-		while (rate < RATE_UPPER_LIMIT)
-		{
-			replace_stack(original->stack_a, push_swap->stack_a);
-			steps = setup(push_swap, offset, rate, 0);
-			steps += natural_merge_sort(push_swap, 0);
-			if (steps < best_steps)
-			{
-				best_offset = offset;
-				best_rate = rate;
-				best_steps = steps;
-			}
-			rate++;
-		}
+		params.rate = RATE_LOWER_LIMIT - 1;
+		while (params.rate++ < RATE_UPPER_LIMIT)
+			run_iteration(&params, &best_params);
 		offset++;
 	}
 	replace_stack(original->stack_a, push_swap->stack_a);
-	setup(push_swap, best_offset, best_rate, 1);
+	setup(push_swap, best_params.offset, best_params.rate, 1);
 	natural_merge_sort(push_swap, 1);
 }
