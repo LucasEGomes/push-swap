@@ -43,41 +43,44 @@ static int	setup(t_push_swap *push_swap, int offset, int rate, int verbose)
 	if (push_swap->stack_a->value > push_swap->stack_a->next->value)
 		steps += swap_a(push_swap, verbose);
 	steps += apply_rate(push_swap, rate, verbose);
-	if (push_swap->stack_a->value > push_swap->stack_a->next->value)
+	if (push_swap->size_a > 1
+		&& push_swap->stack_a->value > push_swap->stack_a->next->value)
 		steps += swap_a(push_swap, verbose);
 	return (steps);
 }
 
-static void	run_iteration(t_sorter_params *params, t_sorter_params *best_params)
+static void	run_iteration(t_push_swap *orig_and_copy, t_sorter_params *params,
+	t_sorter_params *best_params, int verbose)
 {
-	replace_stack(original->stack_a, push_swap->stack_a);
-	params->steps = setup(push_swap, params->offset, params->rate, 0);
-	params->steps += natural_merge_sort(push_swap, 0);
+	t_push_swap	*copy;
+	t_push_swap	*orig;
+
+	orig = orig_and_copy;
+	copy = orig_and_copy + 1;
+	replace_stack(orig->stack_a, copy->stack_a);
+	params->steps = setup(copy, params->offset, params->rate, verbose);
+	params->steps += natural_merge_sort(copy, verbose);
 	if (params->steps < best_params->steps)
 		copy_sorter_params(params, best_params);
 }
 
-void	optimize_sort_steps(t_push_swap *push_swap, t_push_swap *original)
+void	optimize_sort_steps(t_push_swap *orig_and_copy, t_sorter_params range,
+	t_sorter_params step)
 {
-	int				offset_limit;
-	t_sorter_params	params;
 	t_sorter_params	best_params;
+	t_sorter_params	params;
 
-	params.offset = OFFSET_LOWER_LIMIT;
-	if (params.offset < -push_swap->size_a * OFFSET_SIZE_RATE_LIMIT / 100)
-		params.offset = -push_swap->size_a * OFFSET_SIZE_RATE_LIMIT / 100;
-	offset_limit = OFFSET_UPPER_LIMIT;
-	if (offset_limit > push_swap->size_a * OFFSET_SIZE_RATE_LIMIT / 100)
-		offset_limit = push_swap->size_a * OFFSET_SIZE_RATE_LIMIT / 100;
 	set_sorter_params(&best_params, __INT_MAX__, __INT_MAX__, __INT_MAX__);
-	while (params.offset < offset_limit)
+	params.offset = -range.offset;
+	while (params.offset <= range.offset)
 	{
-		params.rate = RATE_LOWER_LIMIT - 1;
-		while (params.rate++ < RATE_UPPER_LIMIT)
-			run_iteration(&params, &best_params);
-		offset++;
+		params.rate = -range.rate;
+		while (params.rate <= range.rate)
+		{
+			run_iteration(orig_and_copy, &params, &best_params, 0);
+			params.rate += step.rate;
+		}
+		params.offset += step.offset;
 	}
-	replace_stack(original->stack_a, push_swap->stack_a);
-	setup(push_swap, best_params.offset, best_params.rate, 1);
-	natural_merge_sort(push_swap, 1);
+	run_iteration(orig_and_copy, &best_params, &best_params, 1);
 }

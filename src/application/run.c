@@ -1,6 +1,7 @@
 #include "application/application_internal.h"
 #include "entities/doubly_linked_list/doubly_linked_list.h"
 #include "entities/push_swap/push_swap.h"
+#include "entities/sorter_parameters/sorter_parameters.h"
 #include "operations/operations.h"
 #include "sorters/bubble_sort/bubble_sort.h"
 #include "sorters/few_elements_sort/few_elements_sort.h"
@@ -15,26 +16,46 @@ static int	free_application_resources(t_push_swap *push_swap, int return_code)
 	return (return_code);
 }
 
+static void	run_best_sorter(t_push_swap *orig_and_copy)
+{
+	t_sorter_params	range;
+	t_sorter_params	step;
+
+	if (orig_and_copy->size_a <= 8)
+	{
+		few_elements_sort(orig_and_copy, 1);
+		return ;
+	}
+	set_sorter_params(&range, orig_and_copy->size_a / 2, 50, 0);
+	if (orig_and_copy->size_a < 250)
+		set_sorter_params(&step, 1, 1, 0);
+	else if (orig_and_copy->size_a < 750)
+		set_sorter_params(&step, 5, 5, 0);
+	else
+		set_sorter_params(&step, orig_and_copy->size_a / 5, 20, 0);
+	optimize_sort_steps(orig_and_copy, range, step);
+}
+
 int	run_application(t_dl_list *stack_a)
 {
-	t_push_swap	auxiliary;
-	t_push_swap	push_swap;
+	t_push_swap	orig_and_copy[2];
+	t_push_swap	*copy;
+	t_push_swap	*orig;
 
-	initialize_push_swap(&push_swap, stack_a);
-	if (push_swap.size_a < 2)
+	orig = orig_and_copy + 0;
+	copy = orig_and_copy + 1;
+	initialize_push_swap(orig, stack_a);
+	if (orig->size_a < 2)
 		return (0);
-	if (copy_push_swap(&push_swap, &auxiliary))
+	if (copy_push_swap(orig, copy))
 		return (1);
-	bubble_sort(&auxiliary, 0);
-	if (has_duplications(auxiliary.stack_a))
-		return (free_application_resources(&auxiliary, 1));
-	if (is_sorted(&push_swap))
-		return (free_application_resources(&auxiliary, 0));
-	replace_with_index_push_swap(&auxiliary, &push_swap);
-	replace_stack(push_swap.stack_a, auxiliary.stack_a);
-	if (push_swap.size_a <= 8)
-		few_elements_sort(&push_swap, 1);
-	else
-		optimize_sort_steps(&push_swap, &auxiliary);
-	return (free_application_resources(&auxiliary, 0));
+	bubble_sort(copy, 0);
+	if (has_duplications(copy->stack_a))
+		return (free_application_resources(copy, 1));
+	if (is_sorted(orig))
+		return (free_application_resources(copy, 0));
+	replace_with_index_push_swap(copy, orig);
+	replace_stack(orig->stack_a, copy->stack_a);
+	run_best_sorter(orig_and_copy);
+	return (free_application_resources(copy, 0));
 }

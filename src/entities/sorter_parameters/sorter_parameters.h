@@ -1,10 +1,5 @@
 #ifndef SORTER_PARAMETERS_H
 # define SORTER_PARAMETERS_H
-# define OFFSET_LOWER_LIMIT -50
-# define OFFSET_UPPER_LIMIT 50
-# define OFFSET_SIZE_RATE_LIMIT 50
-# define RATE_LOWER_LIMIT 1
-# define RATE_UPPER_LIMIT 99
 
 typedef struct s_sorter_parameters
 {
