@@ -26,6 +26,7 @@ SOURCES := \
 	entities/doubly_linked_list/handlers.c \
 	entities/doubly_linked_list/properties.c \
 	entities/push_swap/setter.c \
+	entities/sorter_parameters/setter.c \
 	helper/find_element.c \
 	helper/get_distance.c \
 	helper/has_duplications.c \

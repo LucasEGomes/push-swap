@@ -1,10 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sorter_parameters.h                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luceduar <luceduar@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/25 11:39:15 by luceduar          #+#    #+#             */
+/*   Updated: 2023/03/25 11:39:16 by luceduar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SORTER_PARAMETERS_H
 # define SORTER_PARAMETERS_H
-# define OFFSET_LOWER_LIMIT -50
-# define OFFSET_UPPER_LIMIT 50
-# define OFFSET_SIZE_RATE_LIMIT 50
-# define RATE_LOWER_LIMIT 1
-# define RATE_UPPER_LIMIT 99
 
 typedef struct s_sorter_parameters
 {
