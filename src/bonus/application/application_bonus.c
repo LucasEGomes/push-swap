@@ -16,6 +16,12 @@ typedef int (*operator)(t_push_swap *push_swap, int verbose);
 
 static int read_operation(void)
 {
+	ssize_t	read_bytes;
+	char	buffer[4];
+
+	read_bytes = read(STDIN_FILENO, buffer, 1);
+	if (read_bytes < 1)
+		return (-1);
 	return (0);
 }
 
@@ -57,6 +63,7 @@ int	run_application(t_dl_list *stack_a)
 	}
 	free_application_resources(copy, 0);
 	run_operations(orig);
+	delete_list_dl_list(&(orig->stack_b));
 	if (!is_sorted(orig))
 		return (1);
 	return (0);
