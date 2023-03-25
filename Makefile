@@ -62,6 +62,20 @@ SOURCES := \
 OBJECTS := $(SOURCES:%.c=objs/%.o)
 
 BONUS_SOURCES := \
+	entities/doubly_linked_list/destructors.c \
+	entities/doubly_linked_list/factories.c \
+	entities/doubly_linked_list/handlers.c \
+	entities/doubly_linked_list/properties.c \
+	entities/push_swap/setter.c \
+	helper/has_duplications.c \
+	helper/is_sorted.c \
+	operations/push.c \
+	operations/reverse_rotate.c \
+	operations/rotate.c \
+	operations/swap.c \
+	sorters/bubble_sort/bubble_sort.c \
+	bonus/application/application_bonus.c \
+	bonus/application/application_bonus.c \
 	bonus/checker_bonus.c
 BONUS_OBJECTS := $(BONUS_SOURCES:%.c=objs/%.o)
 DEPENDS := $(OBJECTS:%.o=%.d) $(BONUS_OBJECTS:%.o=%.d)
@@ -86,9 +100,11 @@ clean:
 	rm -rf $(OBJECTS_FOLDER)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(BONUS)
 
 re: fclean all
+
+rebonus: fclean bonus
 
 tests: all
 	$(MAKE) -C $(TEST_FOLDER)
