@@ -4,6 +4,7 @@ ifndef VERBOSE
 endif
 
 NAME := push_swap
+BONUS_NAME := checker
 
 TEST_FOLDER := tests
 SOURCES_FOLDER := src
@@ -59,11 +60,20 @@ SOURCES := \
 	sorters/merge_sort/validators.c \
 	push_swap.c
 OBJECTS := $(SOURCES:%.c=objs/%.o)
-DEPENDS := $(OBJECTS:%.o=%.d)
+
+BONUS_SOURCES := \
+	bonus/checker_bonus.c
+BONUS_OBJECTS := $(BONUS_SOURCES:%.c=objs/%.o)
+DEPENDS := $(OBJECTS:%.o=%.d) $(BONUS_OBJECTS:%.o=%.d)
 
 all: $(NAME)
 
+bonus: | $(NAME) $(BONUS_NAME)
+
 $(NAME): $(OBJECTS)
+	$(CC) $(CFLAGS) $^ -o $@
+
+$(BONUS_NAME): $(BONUS_OBJECTS)
 	$(CC) $(CFLAGS) $^ -o $@
 
 -include $(DEPENDS)
