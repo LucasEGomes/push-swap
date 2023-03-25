@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   optimize_sort_steps.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luceduar <luceduar@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/25 11:39:36 by luceduar          #+#    #+#             */
+/*   Updated: 2023/03/25 11:39:36 by luceduar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "entities/doubly_linked_list/doubly_linked_list.h"
 #include "entities/push_swap/push_swap.h"
 #include "entities/sorter_parameters/sorter_parameters.h"

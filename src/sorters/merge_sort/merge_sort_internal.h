@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   merge_sort_internal.h                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luceduar <luceduar@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/25 11:38:02 by luceduar          #+#    #+#             */
+/*   Updated: 2023/03/25 11:38:03 by luceduar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MERGE_SORT_INTERNAL_H
 # define MERGE_SORT_INTERNAL_H
 # include "entities/doubly_linked_list/doubly_linked_list.h"

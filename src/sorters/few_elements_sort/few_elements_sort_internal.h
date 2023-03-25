@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   few_elements_sort_internal.h                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luceduar <luceduar@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/25 11:38:25 by luceduar          #+#    #+#             */
+/*   Updated: 2023/03/25 11:38:25 by luceduar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FEW_ELEMENTS_SORT_INTERNAL_H
 # define FEW_ELEMENTS_SORT_INTERNAL_H
 # include "entities/push_swap/push_swap.h"
