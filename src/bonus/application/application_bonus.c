@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   application_bonus.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luceduar <luceduar@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/26 16:34:36 by luceduar          #+#    #+#             */
+/*   Updated: 2023/03/26 16:34:36 by luceduar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "application_internal_bonus.h"
 #include "bonus/operations/operations_bonus.h"
 #include "bonus/reader/reader_bonus.h"

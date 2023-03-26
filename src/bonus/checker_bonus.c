@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: luceduar <luceduar@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/26 16:34:55 by luceduar          #+#    #+#             */
+/*   Updated: 2023/03/26 16:34:55 by luceduar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "application/application_bonus.h"
 #include "entities/doubly_linked_list/doubly_linked_list.h"
 #include "parser/parser.h"
