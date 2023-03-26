@@ -23,14 +23,14 @@ static void	run_operations(t_push_swap *push_swap)
 		&rotate_a, &rotate_b, &rotate_both,
 		&swap_a, &swap_b, &swap_both
 	};
-	int			operation;
+	enum e_operators			operator;
 
-	operation = 1;
-	while (operation <= 11)
+	operator = 1;
+	while (operator <= 11)
 	{
-		operation = read_operation();
-		if (operation >= 0 && operation <= 11)
-			operators[operation](push_swap, 0);
+		operator = read_operation();
+		if (operator >= 0 && operator <= 11)
+			operators[operator](push_swap, 0);
 	}
 }
 

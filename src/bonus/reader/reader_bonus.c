@@ -1,12 +1,42 @@
 #include "reader_bonus.h"
 #include <unistd.h>
 
-enum e_operators {ERROR, PA, PB, RRA, RRB, RRR, RA, RB, RR, SA, SB, SS};
+static int	hash_function(char *value)
+{
+	int result;
+
+	result = 0;
+	result += ((int)(value[0])) << 16;
+	result += ((int)(value[1])) << 8;
+	result += ((int)(value[2]));
+	return (result);
+}
 
 static int	parse_operation(char *operation)
 {
-	(void) operation;
-	return (ERROR);
+	const t_hash_operation	hashes[] = {
+		{.hash = 0x0070610A, .operation = PA},
+		{.hash = 0x0070620A, .operation = PB},
+		{.hash = 0x00727261, .operation = RRA},
+		{.hash = 0x00727262, .operation = RRB},
+		{.hash = 0x00727272, .operation = RRR},
+		{.hash = 0x0072610A, .operation = RA},
+		{.hash = 0x0072620A, .operation = RB},
+		{.hash = 0x0072720A, .operation = RR},
+		{.hash = 0x0073610A, .operation = SA},
+		{.hash = 0x0073620A, .operation = SB},
+		{.hash = 0x0073730A, .operation = SS},
+	};
+	int						hash;
+	int						index;
+
+	hash = hash_function(operation);
+	index = 0;
+	while (hash != hashes[index].hash && index < 11)
+		index++;
+	if (index >= 11)
+		return (ERROR);
+	return (hashes[index].operation);
 }
 
 int	read_operation(void)
