@@ -80,6 +80,7 @@ BONUS_SOURCES := \
 	sorters/bubble_sort/bubble_sort.c \
 	bonus/application/application_bonus.c \
 	bonus/operations/error.c \
+	bonus/operations/skip.c \
 	bonus/reader/reader_bonus.c \
 	bonus/checker_bonus.c
 BONUS_OBJECTS := $(BONUS_SOURCES:%.c=objs/%.o)
