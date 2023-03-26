@@ -16,14 +16,14 @@ static int	free_application_resources(t_push_swap *push_swap, int return_code)
 
 static void	run_operations(t_push_swap *push_swap)
 {
-	t_operator	operators[12] = {
+	const t_operator	operators[12] = {
 		&error_operation,
 		&push_a, &push_b,
 		&reverse_rotate_a, &reverse_rotate_b, &reverse_rotate_both,
 		&rotate_a, &rotate_b, &rotate_both,
 		&swap_a, &swap_b, &swap_both
 	};
-	enum e_operators			operator;
+	enum e_operators	operator;
 
 	operator = 1;
 	while (operator <= 11)

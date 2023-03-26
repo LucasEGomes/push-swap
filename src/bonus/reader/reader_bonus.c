@@ -3,30 +3,30 @@
 
 static int	hash_function(char *value)
 {
-	unsigned int result;
+	unsigned int	result;
 
 	result = 0;
-	result += ((unsigned  int)(value[0])) << 24;
-	result += ((unsigned  int)(value[1])) << 16;
-	result += ((unsigned  int)(value[2])) << 8;
-	result += ((unsigned  int)(value[3]));
+	result += ((unsigned int)(value[0])) << 24;
+	result += ((unsigned int)(value[1])) << 16;
+	result += ((unsigned int)(value[2])) << 8;
+	result += ((unsigned int)(value[3]));
 	return ((int)result);
 }
 
 static int	parse_operation(char *operation)
 {
 	const t_hash_operator	hashes[] = {
-		{.hash = 0x70610A00, .operator = PA},
-		{.hash = 0x70620A00, .operator = PB},
-		{.hash = 0x7272610A, .operator = RRA},
-		{.hash = 0x7272620A, .operator = RRB},
-		{.hash = 0x7272720A, .operator = RRR},
-		{.hash = 0x72610A00, .operator = RA},
-		{.hash = 0x72620A00, .operator = RB},
-		{.hash = 0x72720A00, .operator = RR},
-		{.hash = 0x73610A00, .operator = SA},
-		{.hash = 0x73620A00, .operator = SB},
-		{.hash = 0x73730A00, .operator = SS},
+	{.hash = 0x70610A00, .operator = PA},
+	{.hash = 0x70620A00, .operator = PB},
+	{.hash = 0x7272610A, .operator = RRA},
+	{.hash = 0x7272620A, .operator = RRB},
+	{.hash = 0x7272720A, .operator = RRR},
+	{.hash = 0x72610A00, .operator = RA},
+	{.hash = 0x72620A00, .operator = RB},
+	{.hash = 0x72720A00, .operator = RR},
+	{.hash = 0x73610A00, .operator = SA},
+	{.hash = 0x73620A00, .operator = SB},
+	{.hash = 0x73730A00, .operator = SS},
 	};
 	int						hash;
 	int						index;
@@ -44,9 +44,9 @@ int	read_operation(void)
 {
 	static char	buffer[BUFFER_SIZE + 1];
 	static int	index;
-	ssize_t	read_bytes;
-	int		operation_index;
-	char	operation[5];
+	ssize_t		read_bytes;
+	int			operation_index;
+	char		operation[5];
 
 	operation[4] = '\0';
 	operation_index = 0;
