@@ -3,36 +3,37 @@
 
 static int	hash_function(char *value)
 {
-	int result;
+	unsigned int result;
 
 	result = 0;
-	result += ((int)(value[0])) << 16;
-	result += ((int)(value[1])) << 8;
-	result += ((int)(value[2]));
-	return (result);
+	result += ((unsigned  int)(value[0])) << 24;
+	result += ((unsigned  int)(value[1])) << 16;
+	result += ((unsigned  int)(value[2])) << 8;
+	result += ((unsigned  int)(value[3]));
+	return ((int)result);
 }
 
 static int	parse_operation(char *operation)
 {
 	const t_hash_operation	hashes[] = {
-		{.hash = 0x0070610A, .operation = PA},
-		{.hash = 0x0070620A, .operation = PB},
-		{.hash = 0x00727261, .operation = RRA},
-		{.hash = 0x00727262, .operation = RRB},
-		{.hash = 0x00727272, .operation = RRR},
-		{.hash = 0x0072610A, .operation = RA},
-		{.hash = 0x0072620A, .operation = RB},
-		{.hash = 0x0072720A, .operation = RR},
-		{.hash = 0x0073610A, .operation = SA},
-		{.hash = 0x0073620A, .operation = SB},
-		{.hash = 0x0073730A, .operation = SS},
+		{.hash = 0x70610A00, .operation = PA},
+		{.hash = 0x70620A00, .operation = PB},
+		{.hash = 0x7272610A, .operation = RRA},
+		{.hash = 0x7272620A, .operation = RRB},
+		{.hash = 0x7272720A, .operation = RRR},
+		{.hash = 0x72610A00, .operation = RA},
+		{.hash = 0x72620A00, .operation = RB},
+		{.hash = 0x72720A00, .operation = RR},
+		{.hash = 0x73610A00, .operation = SA},
+		{.hash = 0x73620A00, .operation = SB},
+		{.hash = 0x73730A00, .operation = SS},
 	};
 	int						hash;
 	int						index;
 
 	hash = hash_function(operation);
 	index = 0;
-	while (hash != hashes[index].hash && index < 11)
+	while (index < 11 && hash != hashes[index].hash)
 		index++;
 	if (index >= 11)
 		return (ERROR);
@@ -75,11 +76,13 @@ int	read_operation(void)
 			operation[operation_index] = buffer[index];
 			operation[operation_index + 1] = '\0';
 		}
-		else
+		else if (buffer[index] != '\n')
 			index++;
 	}
 	index++;
-	if (operation_index == 0)
+	if (operation_index >= 4)
+		return (ERROR);
+	if (operation_index <= 0)
 		return (-1);
 	return (parse_operation(operation));
 }

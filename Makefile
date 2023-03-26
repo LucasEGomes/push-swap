@@ -109,7 +109,7 @@ fclean: clean
 
 re: fclean all
 
-rebonus: fclean bonus
+rebonus: re bonus
 
 tests: all
 	$(MAKE) -C $(TEST_FOLDER)
