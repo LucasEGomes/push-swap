@@ -10,13 +10,44 @@
             "label": "Build push swap program",
             "command": "/usr/bin/make",
             "args": [
-                "re"
+                "all"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
             },
             "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "Build checker program",
+            "command": "/usr/bin/make",
+            "args": [
+                "bonus"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build"
+        },
+        {
+            "label": "Run push swap",
+            "type": "shell",
+            "command": "${workspaceFolder}/push_swap",
+            "dependsOn": "Build checker program",
+            "args": [
+                "${input:numbers}",
+                ">",
+                "${workspaceFolder}/operations.txt"
+            ]
         }
     ],
+    "inputs": [
+		{
+			"id": "numbers",
+			"description": "Number list to be sorted.",
+			"type": "promptString",
+			"default": "100 3 0 44 5 8"
+		}
+	],
     "version": "2.0.0"
 }

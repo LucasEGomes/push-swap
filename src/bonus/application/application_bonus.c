@@ -1,9 +1,11 @@
+#include "application_internal_bonus.h"
+#include "bonus/operations/operations_bonus.h"
+#include "bonus/reader/reader_bonus.h"
 #include "entities/doubly_linked_list/doubly_linked_list.h"
 #include "entities/push_swap/push_swap.h"
 #include "helper/helper.h"
 #include "operations/operations.h"
 #include "sorters/bubble_sort/bubble_sort.h"
-#include <unistd.h>
 
 static int	free_application_resources(t_push_swap *push_swap, int return_code)
 {
@@ -12,35 +14,23 @@ static int	free_application_resources(t_push_swap *push_swap, int return_code)
 	return (return_code);
 }
 
-typedef int (*operator)(t_push_swap *push_swap, int verbose);
-
-static int read_operation(void)
-{
-	ssize_t	read_bytes;
-	char	buffer[4];
-
-	read_bytes = read(STDIN_FILENO, buffer, 1);
-	if (read_bytes < 1)
-		return (-1);
-	return (0);
-}
-
 static void	run_operations(t_push_swap *push_swap)
 {
-	operator	operators[11] = {
-		push_a, push_b,
-		reverse_rotate_a, reverse_rotate_b, reverse_rotate_both,
-		rotate_a, rotate_b,rotate_both,
-		swap_a, swap_b, swap_both
+	t_operator	operators[12] = {
+		&error_operation,
+		&push_a, &push_b,
+		&reverse_rotate_a, &reverse_rotate_b, &reverse_rotate_both,
+		&rotate_a, &rotate_b, &rotate_both,
+		&swap_a, &swap_b, &swap_both
 	};
-	int			operation;
+	enum e_operators			operator;
 
-	operation = 1;
-	while (operation >= 0 && operation <= 10)
+	operator = 1;
+	while (operator <= 11)
 	{
-		operation = read_operation();
-		if (operation >= 0 && operation <= 10)
-			operators[operation](push_swap, 0);
+		operator = read_operation();
+		if (operator >= 0 && operator <= 11)
+			operators[operator](push_swap, 0);
 	}
 }
 

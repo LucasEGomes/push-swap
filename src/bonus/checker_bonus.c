@@ -23,9 +23,8 @@ static void	free_resources(t_dl_list *stack_a)
 	delete_list_dl_list(&stack_a);
 }
 
-static int	throw_program_exception(t_dl_list *stack_a)
+static int	throw_program_exception(void)
 {
-	free_resources(stack_a);
 	write(STDERR_FILENO, "Error\n", 6);
 	return (1);
 }
@@ -33,17 +32,23 @@ static int	throw_program_exception(t_dl_list *stack_a)
 int	main(int argc, char **argv)
 {
 	t_dl_list	*stack_a;
+	int			result;
 
 	(void) argv;
 	if (argc < 2)
 		return (0);
 	if (validate_input(argc, argv))
-		return (throw_program_exception(NULL));
+		return (throw_program_exception());
 	stack_a = NULL;
 	if (create_resources(&stack_a, argc, argv) != 0)
-		return (throw_program_exception(NULL));
-	if (run_application(stack_a) != 0)
-		return (throw_program_exception(stack_a));
+		return (throw_program_exception());
+	result = run_application(stack_a);
 	free_resources(stack_a);
+	if (result < 0)
+		return (throw_program_exception());
+	if (result != 0)
+		write(STDOUT_FILENO, "KO\n", 3);
+	else
+		write(STDOUT_FILENO, "OK\n", 3);
 	return (0);
 }

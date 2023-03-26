@@ -30,6 +30,36 @@
 				}
 			],
 			"preLaunchTask": "Build push swap program"
+		},
+		{
+			"name": "Checker",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/checker",
+			"args": [
+				"${input:numbers}",
+				// "<", // Uncomment to send a file as standard input
+				// "${workspaceFolder}/operations.txt",
+			],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				},
+				{
+					"description": "Set Disassembly Flavor to Intel",
+					"text": "-gdb-set disassembly-flavor intel",
+					"ignoreFailures": true
+				}
+			],
+			"preLaunchTask": "Build checker program",
+			// "preLaunchTask": "Run push swap", // Uncomment to run push swap
 		}
 
 	],

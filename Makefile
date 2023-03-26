@@ -79,7 +79,8 @@ BONUS_SOURCES := \
 	parser/validators.c \
 	sorters/bubble_sort/bubble_sort.c \
 	bonus/application/application_bonus.c \
-	bonus/application/application_bonus.c \
+	bonus/operations/error.c \
+	bonus/reader/reader_bonus.c \
 	bonus/checker_bonus.c
 BONUS_OBJECTS := $(BONUS_SOURCES:%.c=objs/%.o)
 DEPENDS := $(OBJECTS:%.o=%.d) $(BONUS_OBJECTS:%.o=%.d)
@@ -104,11 +105,11 @@ clean:
 	rm -rf $(OBJECTS_FOLDER)
 
 fclean: clean
-	rm -f $(NAME) $(BONUS)
+	rm -f $(NAME) $(BONUS_NAME)
 
 re: fclean all
 
-rebonus: fclean bonus
+rebonus: re bonus
 
 tests: all
 	$(MAKE) -C $(TEST_FOLDER)
