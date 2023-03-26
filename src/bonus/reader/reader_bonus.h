@@ -3,8 +3,10 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 128
 # endif
+# define TOTAL_OPERATIONS 13
 
 enum	e_operators {
+	SKIP,
 	ERROR,
 	PA,
 	PB,

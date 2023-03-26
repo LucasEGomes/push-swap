@@ -16,7 +16,8 @@ static int	free_application_resources(t_push_swap *push_swap, int return_code)
 
 static void	run_operations(t_push_swap *push_swap)
 {
-	const t_operator	operators[12] = {
+	const t_operator	operators[] = {
+		&skip_operation,
 		&error_operation,
 		&push_a, &push_b,
 		&reverse_rotate_a, &reverse_rotate_b, &reverse_rotate_both,
@@ -26,10 +27,10 @@ static void	run_operations(t_push_swap *push_swap)
 	enum e_operators	operator;
 
 	operator = 1;
-	while (operator <= 11)
+	while (operator <= TOTAL_OPERATIONS)
 	{
 		operator = read_operation();
-		if (operator >= 0 && operator <= 11)
+		if (operator >= 0 && operator <= TOTAL_OPERATIONS)
 			operators[operator](push_swap, 0);
 	}
 }
@@ -53,8 +54,9 @@ int	run_application(t_dl_list *stack_a)
 	}
 	free_application_resources(copy, 0);
 	run_operations(orig);
-	delete_list_dl_list(&(orig->stack_b));
 	if (!is_sorted(orig))
 		return (1);
+	while (orig->size_b > 0)
+		push_a(orig, 0);
 	return (0);
 }

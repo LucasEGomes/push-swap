@@ -3,5 +3,6 @@
 # include "entities/push_swap/push_swap.h"
 
 int	error_operation(t_push_swap *push_swap, int verbose);
+int	skip_operation(t_push_swap *push_swap, int verbose);
 
 #endif

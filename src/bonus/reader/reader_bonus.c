@@ -31,6 +31,8 @@ static int	parse_operation(char *operation)
 	int						hash;
 	int						index;
 
+	if (*operation == '\n')
+		return (SKIP);
 	hash = hash_function(operation);
 	index = 0;
 	while (index < 11 && hash != hashes[index].hash)
@@ -40,49 +42,43 @@ static int	parse_operation(char *operation)
 	return (hashes[index].operator);
 }
 
+static int	read_next_buffer(char *buffer)
+{
+	ssize_t	read_bytes;
+
+	read_bytes = read(STDIN_FILENO, buffer, BUFFER_SIZE);
+	if (read_bytes < 0)
+		return (__INT_MAX__);
+	buffer[read_bytes] = '\0';
+	if (read_bytes < 1)
+		return (__INT_MAX__);
+	return (0);
+}
+
 int	read_operation(void)
 {
-	static char	buffer[BUFFER_SIZE + 1];
 	static int	index;
-	ssize_t		read_bytes;
-	int			operation_index;
+	int			op_index;
+	static char	buffer[BUFFER_SIZE + 1];
 	char		operation[5];
 
 	operation[4] = '\0';
-	operation_index = 0;
+	op_index = 0;
 	while (buffer[index] != '\n')
 	{
-		while (operation_index < 4 && buffer[index] != '\n' && buffer[index] != '\0')
-		{
-			operation[operation_index] = buffer[index];
-			operation_index++;
-			index++;
-		}
 		if (buffer[index] == '\0')
 		{
-			read_bytes = read(STDIN_FILENO, buffer, BUFFER_SIZE);
-			if (read_bytes < 0)
-			{
-				operation[operation_index] = '\0';
-				return (__INT_MAX__);
-			}
-			buffer[read_bytes] = '\0';
-			if (read_bytes < 1)
-				return (__INT_MAX__);
 			index = 0;
+			if (read_next_buffer(buffer) > 0)
+				return (__INT_MAX__);
 		}
-		else if (operation_index < 4)
-		{
-			operation[operation_index] = buffer[index];
-			operation[operation_index + 1] = '\0';
-		}
-		else if (buffer[index] != '\n')
+		while (op_index < 3 && buffer[index] != '\n' && buffer[index] != '\0')
+			operation[op_index++] = buffer[index++];
+		operation[op_index] = buffer[index];
+		if (buffer[index] != '\n' && buffer[index] != '\0')
 			index++;
 	}
+	operation[op_index + 1] = '\0';
 	index++;
-	if (operation_index >= 4)
-		return (ERROR);
-	if (operation_index <= 0)
-		return (-1);
 	return (parse_operation(operation));
 }

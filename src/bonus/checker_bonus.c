@@ -18,9 +18,9 @@ static int	create_resources(t_dl_list **stack_a, int argc, char **argv)
 	return (0);
 }
 
-static void	free_resources(t_dl_list *stack_a)
+static void	free_resources(t_dl_list *stack)
 {
-	delete_list_dl_list(&stack_a);
+	delete_list_dl_list(&stack);
 }
 
 static int	throw_program_exception(void)
