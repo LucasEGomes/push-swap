@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   application_bonus.h                                :+:      :+:    :+:   */
+/*   skip.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luceduar <luceduar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/26 16:34:38 by luceduar          #+#    #+#             */
-/*   Updated: 2023/03/26 16:34:39 by luceduar         ###   ########.fr       */
+/*   Created: 2023/03/26 16:34:40 by luceduar          #+#    #+#             */
+/*   Updated: 2023/03/26 16:34:41 by luceduar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef APPLICATION_BONUS_H
-# define APPLICATION_BONUS_H
-# include "entities/doubly_linked_list/doubly_linked_list.h"
+#include "entities/push_swap/push_swap.h"
 
-int	run_application(t_dl_list *stack_a);
-
-#endif
+int	skip_operation(t_push_swap *push_swap, int verbose)
+{
+	(void) push_swap;
+	(void) verbose;
+	return (0);
+}
