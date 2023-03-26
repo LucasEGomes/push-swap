@@ -15,18 +15,18 @@ static int	hash_function(char *value)
 
 static int	parse_operation(char *operation)
 {
-	const t_hash_operation	hashes[] = {
-		{.hash = 0x70610A00, .operation = PA},
-		{.hash = 0x70620A00, .operation = PB},
-		{.hash = 0x7272610A, .operation = RRA},
-		{.hash = 0x7272620A, .operation = RRB},
-		{.hash = 0x7272720A, .operation = RRR},
-		{.hash = 0x72610A00, .operation = RA},
-		{.hash = 0x72620A00, .operation = RB},
-		{.hash = 0x72720A00, .operation = RR},
-		{.hash = 0x73610A00, .operation = SA},
-		{.hash = 0x73620A00, .operation = SB},
-		{.hash = 0x73730A00, .operation = SS},
+	const t_hash_operator	hashes[] = {
+		{.hash = 0x70610A00, .operator = PA},
+		{.hash = 0x70620A00, .operator = PB},
+		{.hash = 0x7272610A, .operator = RRA},
+		{.hash = 0x7272620A, .operator = RRB},
+		{.hash = 0x7272720A, .operator = RRR},
+		{.hash = 0x72610A00, .operator = RA},
+		{.hash = 0x72620A00, .operator = RB},
+		{.hash = 0x72720A00, .operator = RR},
+		{.hash = 0x73610A00, .operator = SA},
+		{.hash = 0x73620A00, .operator = SB},
+		{.hash = 0x73730A00, .operator = SS},
 	};
 	int						hash;
 	int						index;
@@ -37,7 +37,7 @@ static int	parse_operation(char *operation)
 		index++;
 	if (index >= 11)
 		return (ERROR);
-	return (hashes[index].operation);
+	return (hashes[index].operator);
 }
 
 int	read_operation(void)
