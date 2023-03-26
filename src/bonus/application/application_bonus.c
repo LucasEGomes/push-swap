@@ -1,4 +1,4 @@
-#include "application_bonus_internal.h"
+#include "application_internal_bonus.h"
 #include "bonus/operations/operations_bonus.h"
 #include "bonus/reader/reader_bonus.h"
 #include "entities/doubly_linked_list/doubly_linked_list.h"
