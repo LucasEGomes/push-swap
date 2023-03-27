@@ -6,7 +6,7 @@
 /*   By: luceduar <luceduar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:34:36 by luceduar          #+#    #+#             */
-/*   Updated: 2023/03/26 16:34:36 by luceduar         ###   ########.fr       */
+/*   Updated: 2023/03/26 16:56:02 by luceduar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "helper/helper.h"
 #include "operations/operations.h"
 #include "sorters/bubble_sort/bubble_sort.h"
+#include <unistd.h>
 
 static int	free_application_resources(t_push_swap *push_swap, int return_code)
 {
@@ -56,6 +57,7 @@ int	run_application(t_dl_list *stack_a)
 	orig = orig_and_copy + 0;
 	copy = orig_and_copy + 1;
 	initialize_push_swap(orig, stack_a);
+	initialize_push_swap(copy, NULL);
 	if (orig->size_a >= 2)
 	{
 		if (copy_push_swap(orig, copy))
@@ -68,7 +70,5 @@ int	run_application(t_dl_list *stack_a)
 	run_operations(orig);
 	if (!is_sorted(orig))
 		return (1);
-	while (orig->size_b > 0)
-		push_a(orig, 0);
-	return (0);
+	return (free_application_resources(orig, 0));
 }
