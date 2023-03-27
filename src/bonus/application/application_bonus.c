@@ -6,7 +6,7 @@
 /*   By: luceduar <luceduar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:34:36 by luceduar          #+#    #+#             */
-/*   Updated: 2023/03/26 16:56:02 by luceduar         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:11:25 by luceduar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,27 +48,43 @@ static void	run_operations(t_push_swap *push_swap)
 	}
 }
 
+static int	has_duplications_unsorted(t_dl_list *stack, int size)
+{
+	t_dl_list	*current;
+	t_dl_list	*pivot;
+	int			index;
+	int			start;
+
+	start = 0;
+	current = stack;
+	while (start < size - 1)
+	{
+		index = start + 1;
+		pivot = current->next;
+		while (index < size)
+		{
+			if (current->value == pivot->value)
+				return (1);
+			index++;
+			pivot = pivot->next;
+		}
+		current = current->next;
+		start++;
+	}
+	return (0);
+}
+
 int	run_application(t_dl_list *stack_a)
 {
-	t_push_swap	orig_and_copy[2];
-	t_push_swap	*copy;
-	t_push_swap	*orig;
+	t_push_swap	push_swap;
+	t_push_swap	*pointer;
 
-	orig = orig_and_copy + 0;
-	copy = orig_and_copy + 1;
-	initialize_push_swap(orig, stack_a);
-	initialize_push_swap(copy, NULL);
-	if (orig->size_a >= 2)
-	{
-		if (copy_push_swap(orig, copy))
-			return (1);
-		bubble_sort(copy, 0);
-		if (has_duplications(copy->stack_a))
-			return (free_application_resources(copy, 1));
-	}
-	free_application_resources(copy, 0);
-	run_operations(orig);
-	if (!is_sorted(orig))
+	pointer = &push_swap;
+	initialize_push_swap(pointer, stack_a);
+	if (has_duplications_unsorted(pointer->stack_a, pointer->size_a))
+		return (free_application_resources(pointer, -1));
+	run_operations(pointer);
+	if (!is_sorted(pointer))
 		return (1);
-	return (free_application_resources(orig, 0));
+	return (free_application_resources(pointer, 0));
 }
