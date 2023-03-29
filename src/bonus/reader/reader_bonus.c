@@ -6,7 +6,7 @@
 /*   By: luceduar <luceduar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:34:51 by luceduar          #+#    #+#             */
-/*   Updated: 2023/03/26 16:34:52 by luceduar         ###   ########.fr       */
+/*   Updated: 2023/03/26 16:47:19 by luceduar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	read_operation(void)
 	static char	buffer[BUFFER_SIZE + 1];
 	char		operation[5];
 
+	operation[0] = '\n';
 	operation[4] = '\0';
 	op_index = 0;
 	while (buffer[index] != '\n')

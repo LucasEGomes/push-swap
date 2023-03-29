@@ -6,7 +6,7 @@
 /*   By: luceduar <luceduar@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:34:55 by luceduar          #+#    #+#             */
-/*   Updated: 2023/03/26 16:34:55 by luceduar         ###   ########.fr       */
+/*   Updated: 2023/03/26 16:50:14 by luceduar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,6 @@ static int	create_resources(t_dl_list **stack_a, int argc, char **argv)
 	return (0);
 }
 
-static void	free_resources(t_dl_list *stack)
-{
-	delete_list_dl_list(&stack);
-}
-
 static int	throw_program_exception(void)
 {
 	write(STDERR_FILENO, "Error\n", 6);
@@ -55,7 +50,6 @@ int	main(int argc, char **argv)
 	if (create_resources(&stack_a, argc, argv) != 0)
 		return (throw_program_exception());
 	result = run_application(stack_a);
-	free_resources(stack_a);
 	if (result < 0)
 		return (throw_program_exception());
 	if (result != 0)
